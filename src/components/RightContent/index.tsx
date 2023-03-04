@@ -31,6 +31,7 @@ const GlobalHeaderRight: React.FC<IindexProps> = ({}) => {
   async function connect() {
     try {
       await activate(injected)
+      // eslint-disable-next-line @typescript-eslint/no-shadow
     } catch (error) {
       console.log(error);
 
@@ -74,13 +75,16 @@ const GlobalHeaderRight: React.FC<IindexProps> = ({}) => {
         //   console.log('input', value);
         // }}
       />
-      <Button type="primary" onClick={connect}><FormattedMessage id="menu.account.metamask" defaultMessage="连接狐狸钱包"  /></Button>
       {active ? (
         <span className={styles.mm_font}>
           Connected with <b>{account}</b>
         </span>
       ) : (
-        <span className={styles.mm_font}>Not connected</span>
+        <span className={styles.mm_font}>
+          <Button type="primary" onClick={connect}>
+            <FormattedMessage id="menu.account.metamask" defaultMessage="连接狐狸钱包" />
+          </Button>
+        </span>
       )}
       <SelectLang className={styles.action} />
     </Space>
